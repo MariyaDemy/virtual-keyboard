@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+.body {
+    background: #e0e3eb;
+    caret-color: #997fff;
+}
+
+.container {
+    max-width: 80rem;
+    padding: 0px 2.5%;
+    margin: 0 auto;
+}
+
+.header-title {
+    margin: 3rem 0;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.footer__text {
+    margin: 2rem 0;
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.keyboard {
+    position: relative;
+    width: 100%;
+    height: 23rem;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    background: #a37fff96;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.textarea {
+    height: 15rem;
+    width: 100%;
+    outline: none;
+    border: none;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: #000e1a;
+    resize: vertical;
+    border-radius: 0.6rem;
+    padding: 1rem;
+}
+
+.textarea::selection {
+    background: #a37fff42;
+}

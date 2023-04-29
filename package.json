@@ -1,0 +1,23 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"js/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MariyaDemy/virtual-keyboard.git"
+  },
+  "author": "MariyaDemy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MariyaDemy/virtual-keyboard/issues"
+  },
+  "homepage": "https://github.com/MariyaDemy/virtual-keyboard#readme",
+  "devDependencies": {
+    "eslint": "^8.39.0"
+  }
+}
