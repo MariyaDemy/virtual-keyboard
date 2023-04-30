@@ -1,8 +1,8 @@
-import Header from "./Header.mjs";
-import Main from "./Main.mjs";
-import Footer from "./Footer.mjs";
+import Header from './Header.mjs';
+import Main from './Main.mjs';
+import Footer from './Footer.mjs';
 
-document.body.classList.add("body");
+document.body.classList.add('body');
 
 const header = new Header();
 const main = new Main();

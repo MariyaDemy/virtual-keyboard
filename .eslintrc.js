@@ -3,7 +3,6 @@ module.exports = {
         "browser": true,
         "es2021": true
     },
-    "extends": "eslint:recommended",
     "overrides": [
     ],
     "parserOptions": {
@@ -11,5 +10,7 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-    }
+        "import/extensions": "off"
+    },
+    "extends": "airbnb-base"
 }

@@ -1,22 +1,20 @@
-import Component from "./Component.mjs";
+import Component from './Component.mjs';
 
 class Footer extends Component {
-    constructor() {
-        super();
-        this.$view = this._render();
-    }
+  constructor() {
+    super();
+    this.$view = Footer.render();
+  }
 
-    _render(){
-        const footer = super._createElement("footer", ["footer"]);
-        const container = super._createElement("div", ["container"]);
-        const footerText = super._createElement("p", ["footer__text"], "Keybord for Windows OS");
-        container.append(footerText);
-        footer.append(container);
+  static render() {
+    const footer = Component.createElement('footer', ['footer']);
+    const container = Component.createElement('div', ['container']);
+    const footerText = Component.createElement('p', ['footer__text'], 'Keybord for Windows OS');
+    container.append(footerText);
+    footer.append(container);
 
-        return footer;
-    };
-
+    return footer;
+  }
 }
-
 
 export default Footer;
