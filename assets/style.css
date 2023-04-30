@@ -75,6 +75,11 @@ html {
   }
 }
 
+.keyboard__key.hightlight {
+    background: rgb(204 204 204 / 0%);
+    transform: scale(0.92);
+}
+
 .footer__text {
     margin: 2rem 0;
     font-size: 2.2rem;

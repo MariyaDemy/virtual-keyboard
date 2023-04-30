@@ -11,11 +11,9 @@ class Main extends Component {
   static render() {
     const main = Component.createElement('main', ['main']);
     const container = Component.createElement('div', ['container']);
-    const keyboard = new Keyboard();
-    console.log(keyboard);
 
+    const keyboard = new Keyboard();
     const textarea = new Textarea();
-    console.log(textarea);
 
     container.append(textarea.$view, keyboard.$view);
     main.append(container);

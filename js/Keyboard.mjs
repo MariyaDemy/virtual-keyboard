@@ -1,43 +1,68 @@
 import Component from './Component.mjs';
 
 class Keyboard extends Component {
+  static btnsCharsEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=',
+    'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del',
+    'Caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter',
+    'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift',
+    'Ctrl', 'Win', 'Alt', '', 'Ctrl', '◄', '▼', '►'];
+
+  static btnsCode = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7',
+    'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR',
+    'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete',
+    'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote',
+    'Enter', 'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash',
+    'ArrowUp', 'ShiftRight', 'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'ControlRight', 'ArrowLeft',
+    'ArrowDown', 'ArrowRight'];
+
+  buttons = [];
+
   constructor() {
     super();
-    this.$view = Keyboard.render();
+    this.$view = this.render();
+
+    const keydownHandler = (event) => {
+      const btnIndex = Keyboard.btnsCode.indexOf(event.code);
+      if (btnIndex !== -1) {
+        this.buttons[btnIndex].classList.add('hightlight');
+      }
+    };
+
+    const keyupHandler = (event) => {
+      const btnIndex = Keyboard.btnsCode.indexOf(event.code);
+      if (btnIndex !== -1) {
+        this.buttons[btnIndex].classList.remove('hightlight');
+      }
+    };
+
+    document.addEventListener('keydown', keydownHandler);
+    document.addEventListener('keyup', keyupHandler);
   }
 
-  static render() {
+  render() {
     const keyboard = Component.createElement('div', ['keyboard']);
 
-    const btnsChars = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=',
-      'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del',
-      'Caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter',
-      'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift',
-      'Ctrl', 'Win', 'Alt', '', 'Ctrl', '◄', '▼', '►'];
-
-    const buttons = [];
-
-    for (let i = 0; i < btnsChars.length; i += 1) {
-      if (btnsChars[i] === 'Backspace') {
-        buttons.push(Keyboard.button({ char: btnsChars[i], width: '144px' }));
-      } else if (btnsChars[i] === 'Caps') {
-        buttons.push(Keyboard.button({ char: btnsChars[i], width: '100px' }));
-      } else if (btnsChars[i] === 'Tab') {
-        buttons.push(Keyboard.button({ char: btnsChars[i], width: '85px' }));
-      } else if (btnsChars[i] === '\\') {
-        buttons.push(Keyboard.button({ char: btnsChars[i], width: '55px' }));
-      } else if (btnsChars[i] === 'Enter') {
-        buttons.push(Keyboard.button({ char: btnsChars[i], width: '127px' }));
-      } else if (btnsChars[i] === '') {
-        buttons.push(Keyboard.button({ char: btnsChars[i], width: '260px' }));
-      } else if (btnsChars[i] === 'Shift') {
-        buttons.push(Keyboard.button({ char: btnsChars[i], width: '114px' }));
+    for (let i = 0; i < Keyboard.btnsCharsEn.length; i += 1) {
+      if (Keyboard.btnsCharsEn[i] === 'Backspace') {
+        this.buttons.push(Keyboard.button({ char: Keyboard.btnsCharsEn[i], width: '144px' }));
+      } else if (Keyboard.btnsCharsEn[i] === 'Caps') {
+        this.buttons.push(Keyboard.button({ char: Keyboard.btnsCharsEn[i], width: '100px' }));
+      } else if (Keyboard.btnsCharsEn[i] === 'Tab') {
+        this.buttons.push(Keyboard.button({ char: Keyboard.btnsCharsEn[i], width: '85px' }));
+      } else if (Keyboard.btnsCharsEn[i] === '\\') {
+        this.buttons.push(Keyboard.button({ char: Keyboard.btnsCharsEn[i], width: '55px' }));
+      } else if (Keyboard.btnsCharsEn[i] === 'Enter') {
+        this.buttons.push(Keyboard.button({ char: Keyboard.btnsCharsEn[i], width: '127px' }));
+      } else if (Keyboard.btnsCharsEn[i] === '') {
+        this.buttons.push(Keyboard.button({ char: Keyboard.btnsCharsEn[i], width: '260px' }));
+      } else if (Keyboard.btnsCharsEn[i] === 'Shift') {
+        this.buttons.push(Keyboard.button({ char: Keyboard.btnsCharsEn[i], width: '114px' }));
       } else {
-        buttons.push(Keyboard.button({ char: btnsChars[i], width: '40px' }));
+        this.buttons.push(Keyboard.button({ char: Keyboard.btnsCharsEn[i], width: '40px' }));
       }
     }
 
-    keyboard.append(...buttons);
+    keyboard.append(...this.buttons);
 
     return keyboard;
   }
