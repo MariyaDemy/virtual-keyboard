@@ -3,10 +3,10 @@ import Component from './Component.mjs';
 class Header extends Component {
   constructor() {
     super();
-    this.$view = Header.render();
+    this.$view = Header.createComponent();
   }
 
-  static render() {
+  static createComponent() {
     const header = Component.createElement('header');
     const container = Component.createElement('div', ['container']);
     const title = Component.createElement('h1', ['header-title'], 'RSS Virtual-keyboard');

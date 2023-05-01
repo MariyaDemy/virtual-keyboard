@@ -5,10 +5,10 @@ import Keyboard from './Keyboard.mjs';
 class Main extends Component {
   constructor() {
     super();
-    this.$view = Main.render();
+    this.$view = Main.createComponent();
   }
 
-  static render() {
+  static createComponent() {
     const main = Component.createElement('main', ['main']);
     const container = Component.createElement('div', ['container']);
 
