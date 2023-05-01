@@ -76,6 +76,8 @@ class Keyboard extends Component {
 
   isCapsClicked = false;
 
+  isLangChanged = false;
+
   constructor() {
     super();
     this.$view = this.createComponent();
@@ -94,18 +96,22 @@ class Keyboard extends Component {
       }
 
       if (event.code === 'ShiftRight' || event.code === 'ShiftLeft') {
-        this.isShiftClicked = true;
-
-        for (let i = 0; i < this.buttons.length; i += 1) {
-          const codeCharIndex = Keyboard.getIndex(this.isShiftClicked, false, this.isCapsClicked);
-          if (Keyboard.code2CharObj[Keyboard.btnCode[i]]) {
-            this.buttons[i].innerText = Keyboard.code2CharObj[Keyboard.btnCode[i]][codeCharIndex];
-          }
+        if (this.isLangChanged) {
+          this.isShiftClicked = true;
+          this.refresh(this.isShiftClicked, true, this.isCapsClicked);
+        } else {
+          this.isShiftClicked = true;
+          this.refresh(this.isShiftClicked, false, this.isCapsClicked);
         }
       }
 
       if (event.code === 'CapsLock') {
         this.isCapsClicked = !this.isCapsClicked;
+      }
+
+      if (event.shiftKey && event.altKey) {
+        this.isLangChanged = !this.isLangChanged;
+        this.refresh(this.isShiftClicked, true, this.isCapsClicked);
       }
     };
 
@@ -118,11 +124,10 @@ class Keyboard extends Component {
       if (!event.shiftKey) {
         this.isShiftClicked = false;
 
-        for (let i = 0; i < this.buttons.length; i += 1) {
-          const codeCharIndex = Keyboard.getIndex(this.isShiftClicked, false, this.isCapsClicked);
-          if (Keyboard.code2CharObj[Keyboard.btnCode[i]]) {
-            this.buttons[i].innerText = Keyboard.code2CharObj[Keyboard.btnCode[i]][codeCharIndex];
-          }
+        if (this.isLangChanged) {
+          this.refresh(this.isShiftClicked, true, this.isCapsClicked);
+        } else {
+          this.refresh(this.isShiftClicked, false, this.isCapsClicked);
         }
       }
     };
@@ -163,35 +168,32 @@ class Keyboard extends Component {
       event.target.dispatchEvent(customKeyEvent);
 
       if (event.target.innerHTML === 'Shift') {
-        this.isShiftClicked = !this.isShiftClicked;
-
-        for (let i = 0; i < this.buttons.length; i += 1) {
-          const codeCharIndex = Keyboard.getIndex(this.isShiftClicked, false, this.isCapsClicked);
-          if (Keyboard.code2CharObj[Keyboard.btnCode[i]]) {
-            this.buttons[i].innerText = Keyboard.code2CharObj[Keyboard.btnCode[i]][codeCharIndex];
-          }
+        if (this.isLangChanged) {
+          this.isShiftClicked = !this.isShiftClicked;
+          this.refresh(this.isShiftClicked, true, this.isCapsClicked);
+        } else {
+          this.isShiftClicked = !this.isShiftClicked;
+          this.refresh(this.isShiftClicked, false, this.isCapsClicked);
         }
       } else if (event.target.innerHTML !== 'Shift') {
         if (!event.shiftKey) {
-          this.isShiftClicked = false;
-
-          for (let i = 0; i < this.buttons.length; i += 1) {
-            const codeCharIndex = Keyboard.getIndex(this.isShiftClicked, false, this.isCapsClicked);
-            if (Keyboard.code2CharObj[Keyboard.btnCode[i]]) {
-              this.buttons[i].innerText = Keyboard.code2CharObj[Keyboard.btnCode[i]][codeCharIndex];
-            }
+          if (this.isLangChanged) {
+            this.isShiftClicked = false;
+            this.refresh(this.isShiftClicked, true, this.isCapsClicked);
+          } else {
+            this.isShiftClicked = false;
+            this.refresh(this.isShiftClicked, false, this.isCapsClicked);
           }
         }
       }
 
       if (event.target.innerHTML === 'Caps') {
-        this.isCapsClicked = !this.isCapsClicked;
-
-        for (let i = 0; i < this.buttons.length; i += 1) {
-          const codeCharIndex = Keyboard.getIndex(this.isShiftClicked, false, this.isCapsClicked);
-          if (Keyboard.code2CharObj[Keyboard.btnCode[i]]) {
-            this.buttons[i].innerText = Keyboard.code2CharObj[Keyboard.btnCode[i]][codeCharIndex];
-          }
+        if (this.isLangChanged) {
+          this.isCapsClicked = !this.isCapsClicked;
+          this.refresh(this.isShiftClicked, true, this.isCapsClicked);
+        } else {
+          this.isCapsClicked = !this.isCapsClicked;
+          this.refresh(this.isShiftClicked, false, this.isCapsClicked);
         }
       }
     };
@@ -206,6 +208,15 @@ class Keyboard extends Component {
     button.style.width = options.width;
     button.style.height = '40px';
     return button;
+  }
+
+  refresh(shiftState, isRussian, capsState) {
+    for (let i = 0; i < this.buttons.length; i += 1) {
+      const codeCharIndex = Keyboard.getIndex(shiftState, isRussian, capsState);
+      if (Keyboard.code2CharObj[Keyboard.btnCode[i]]) {
+        this.buttons[i].innerText = Keyboard.code2CharObj[Keyboard.btnCode[i]][codeCharIndex];
+      }
+    }
   }
 }
 
