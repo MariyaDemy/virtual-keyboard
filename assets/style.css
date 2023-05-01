@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+.body {
+    background: #e0e3eb;
+    caret-color: #997fff;
+}
+
+.container {
+    max-width: 80rem;
+    padding: 0px 30px;
+    margin: 0 auto;
+}
+
+.header-title {
+    margin: 3rem 0;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.textarea {
+    height: 15rem;
+    width: 100%;
+    outline: none;
+    border: none;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: #000e1a;
+    resize: vertical;
+    border-radius: 0.6rem;
+    padding: 1rem;
+}
+
+.textarea::selection {
+    background: #a37fff42;
+}
+
+.keyboard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    background: #a37fff96;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+}
+
+.keyboard__key {
+    background: inherit;
+    border-radius: 0.3rem;
+    border: 0.5px solid #ffffff9e;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.keyboard__key:active {
+    transform: scale(0.92);
+}
+
+@media (hover: hover) {
+    .keyboard__key:hover {
+      background: rgb(204 204 204 / 0%);
+  }
+}
+
+.keyboard__key.hightlight {
+    background: rgb(204 204 204 / 0%);
+    transform: scale(0.92);
+}
+
+.footer__text {
+    margin: 2rem 0;
+    font-size: 2.2rem;
+    text-align: center;
+}
