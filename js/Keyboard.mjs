@@ -103,6 +103,10 @@ class Keyboard extends Component {
           }
         }
       }
+
+      if (event.code === 'CapsLock') {
+        this.isCapsClicked = !this.isCapsClicked;
+      }
     };
 
     const keyupHandler = (event) => {
@@ -176,6 +180,17 @@ class Keyboard extends Component {
             if (Keyboard.code2CharObj[Keyboard.btnCode[i]]) {
               this.buttons[i].innerText = Keyboard.code2CharObj[Keyboard.btnCode[i]][codeCharIndex];
             }
+          }
+        }
+      }
+
+      if (event.target.innerHTML === 'Caps') {
+        this.isCapsClicked = !this.isCapsClicked;
+
+        for (let i = 0; i < this.buttons.length; i += 1) {
+          const codeCharIndex = Keyboard.getIndex(this.isShiftClicked, false, this.isCapsClicked);
+          if (Keyboard.code2CharObj[Keyboard.btnCode[i]]) {
+            this.buttons[i].innerText = Keyboard.code2CharObj[Keyboard.btnCode[i]][codeCharIndex];
           }
         }
       }
